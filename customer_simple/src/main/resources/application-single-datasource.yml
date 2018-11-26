@@ -1,7 +1,6 @@
 spring:
   datasource:
     username: root
-    #password: GYKJ2017@cn
     password: mysql
     url: jdbc:mysql://localhost:3306/tjfx?autoReconnect=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&allowPublicKeyRetrieval=true
     type: com.alibaba.druid.pool.DruidDataSource
