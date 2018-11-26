@@ -2,6 +2,7 @@ package cn.com.megalith.auth;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -28,16 +29,19 @@ public class CustomerAuthenticationProvider extends AbstractUserDetailsAuthentic
     @Resource(name = "signUserDetailService")
     private UserDetailsService userDetailsService;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     /**
      *手动实现认证
      */
     @Override
-    protected void additionalAuthenticationChecks(UserDetails userDetails , UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
+    protected void additionalAuthenticationChecks(UserDetails userDetails, UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
         if (authentication.getCredentials() == null) {
+            this.logger.debug("Authentication failed: no credentials provided");
             throw new BadCredentialsException(this.messages.getMessage("AbstractUserDetailsAuthenticationProvider.badCredentials", "Bad credentials"));
         } else {
             String presentedPassword = authentication.getCredentials().toString();
-            if ( !Objects.equals(presentedPassword, userDetails.getPassword())) {
+            if (!this.passwordEncoder.matches(presentedPassword, userDetails.getPassword())) {
                 this.logger.debug("Authentication failed: password does not match stored value");
                 throw new BadCredentialsException(this.messages.getMessage("AbstractUserDetailsAuthenticationProvider.badCredentials", "Bad credentials"));
             }

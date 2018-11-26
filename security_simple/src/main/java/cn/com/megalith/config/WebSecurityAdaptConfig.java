@@ -1,6 +1,7 @@
 package cn.com.megalith.config;
 
 import cn.com.megalith.auth.CustomerAuthenticationProvider;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -29,7 +30,7 @@ public class WebSecurityAdaptConfig extends WebSecurityConfigurerAdapter {
      */
     @Resource(name = "signUserDetailService")
     private UserDetailsService userDetailsService;
-    @Resource
+    @Autowired
     private PasswordEncoder passwordEncoder;
     @Resource(name = "myCustomerAuthenticationProvider")
     private CustomerAuthenticationProvider customerAuthenticationProvider;
@@ -42,9 +43,9 @@ public class WebSecurityAdaptConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()//定义哪些url需要被保护  哪些不需要保护
                 .antMatchers("/oauth/token", "oauth/check_token").permitAll()//定义这两个链接不需要登录可访问
-               // .antMatchers("/**").permitAll() //定义所有的都不需要登录  目前是测试需要
+                .antMatchers("/**").permitAll() //定义所有的都不需要登录  目前是测试需要
                 .anyRequest().authenticated() //其他的都需要登录
-                .antMatchers("/sys/**").hasRole("admin")///sys/**下的请求 需要有admin的角色
+                //.antMatchers("/sys/**").hasRole("admin")///sys/**下的请求 需要有admin的角色
                 .and()
                 .formLogin().loginPage("/login")//如果未登录则跳转登录的页面   这儿可以控制登录成功和登录失败跳转的页面
                 .usernameParameter("username").passwordParameter("password").permitAll()//定义号码与密码的parameter
@@ -53,10 +54,6 @@ public class WebSecurityAdaptConfig extends WebSecurityConfigurerAdapter {
 
 
     }
-
-
-
-
     /**
      * 权限管理器  AuthorizationServerConfigurerAdapter认证中心需要的AuthenticationManager需要
      */
@@ -67,23 +64,6 @@ public class WebSecurityAdaptConfig extends WebSecurityConfigurerAdapter {
         //配置登录user验证处理器  以及密码加密器  好让认证中心进行验证
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
     }
-
-    //密码加密器 在配置AuthenticationManagerBuilder需要
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return new PasswordEncoder() {
-            @Override
-            public String encode(CharSequence charSequence) {
-                return charSequence.toString();
-            }
-
-            @Override
-            public boolean matches(CharSequence charSequence , String s) {
-                return Objects.equals(charSequence.toString(),s);
-            }
-        };
-    }
-
     /**
      * 需要配置这个支持password模式
      * support password grant type

@@ -11,10 +11,13 @@ import org.springframework.security.oauth2.provider.expression.OAuth2MethodSecur
  * @Date: 2018-11-22
  * @Time: 16:53
  */
-@Configuration
-public class OAuth2ResourceServerConfig extends GlobalMethodSecurityConfiguration {
-    @Override
-    protected MethodSecurityExpressionHandler createExpressionHandler() {
-        return new OAuth2MethodSecurityExpressionHandler();
-    }
+//@Configuration
+//public class OAuth2ResourceServerConfig extends GlobalMethodSecurityConfiguration {
+//    @Override
+//    protected MethodSecurityExpressionHandler createExpressionHandler() {
+//        return new OAuth2MethodSecurityExpressionHandler();
+//    }
+//}
+public class OAuth2ResourceServerConfig{
+
 }
