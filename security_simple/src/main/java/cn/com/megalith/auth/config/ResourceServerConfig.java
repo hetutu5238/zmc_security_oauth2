@@ -11,8 +11,8 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
  * @Date: 2018-11-22
  * @Time: 16:58
  */
-//@Configuration
-//@EnableResourceServer //开启资源提供服务的配置  是默认情况下spring security oauth2的http配置   会被WebSecurityConfigurerAdapter的配置覆盖
+@Configuration
+@EnableResourceServer //开启资源提供服务的配置  是默认情况下spring security oauth2的http配置   会被WebSecurityConfigurerAdapter的配置覆盖
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Override
