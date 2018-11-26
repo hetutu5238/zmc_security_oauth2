@@ -19,7 +19,7 @@ import org.springframework.security.oauth2.provider.error.WebResponseExceptionTr
 @Configuration
 public class WebResponseExceptionTranslateConfig {
     /**
-     *自定义登录或者鉴权失败时的返回信息
+     * 自定义登录或者鉴权失败时的返回信息
      */
     @Bean(name = "webResponseExceptionTranslator")
     public WebResponseExceptionTranslator webResponseExceptionTranslator() {
@@ -31,13 +31,13 @@ public class WebResponseExceptionTranslateConfig {
                 HttpHeaders headers = new HttpHeaders();
                 headers.setAll(responseEntity.getHeaders().toSingleValueMap());
                 // do something with header or response
-                if (400 == responseEntity.getStatusCode().value()) {
+                if ( 400 == responseEntity.getStatusCode().value() ) {
                     System.out.println(body.getMessage());
-                    if("Bad credentials".equals(body.getMessage())){
-                        return new ResponseEntity(new ResponseData("400","您输入的用户名或密码错误",null) , headers, HttpStatus.OK);
+                    if ( "Bad credentials".equals(body.getMessage()) ) {
+                        return new ResponseEntity(new ResponseData("400" , "您输入的用户名或密码错误" , null) , headers , HttpStatus.OK);
                     }
                 }
-                return new ResponseEntity(body, headers, responseEntity.getStatusCode());
+                return new ResponseEntity(body , headers , responseEntity.getStatusCode());
 
             }
         };

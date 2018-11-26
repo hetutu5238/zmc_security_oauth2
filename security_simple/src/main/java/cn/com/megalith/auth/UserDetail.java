@@ -21,17 +21,19 @@ public class UserDetail implements UserDetails {
     private User user;
 
     private String id;
+
     /**
-     *通过构造方法在UserDetailsService的方法中将查到的user注入进去
+     * 通过构造方法在UserDetailsService的方法中将查到的user注入进去
      */
     public UserDetail(User user) {
         this.user = user;
-        if(user != null){
+        if ( user != null ) {
             this.id = user.getId();
         }
     }
+
     /**
-     *对当前的用户赋予其应有的权限
+     * 对当前的用户赋予其应有的权限
      */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -47,43 +49,49 @@ public class UserDetail implements UserDetails {
 
         return authorisList;
     }
+
     /**
-     *获取密码
+     * 获取密码
      */
     @Override
     public String getPassword() {
         return user.getPassword();
     }
+
     /**
-     *获取用户名
+     * 获取用户名
      */
     @Override
     public String getUsername() {
         return user.getUsername();
     }
+
     /**
-     *账户是否未过期
+     * 账户是否未过期
      */
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
+
     /**
-     *账户是否未锁定
+     * 账户是否未锁定
      */
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
+
     /**
-     *证书是否未过期
+     * 证书是否未过期
      */
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
+
     /**
-     *是否有效   可对应数据库中的delete_flag字段
+     * 是否有效   可对应数据库中的delete_flag字段
      */
     @Override
     public boolean isEnabled() {

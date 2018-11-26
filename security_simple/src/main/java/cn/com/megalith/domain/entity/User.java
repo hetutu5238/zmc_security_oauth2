@@ -2,7 +2,7 @@ package cn.com.megalith.domain.entity;
 
 import java.io.Serializable;
 
-public class User  implements Serializable {
+public class User implements Serializable {
 
 
     private String id;

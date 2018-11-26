@@ -17,6 +17,7 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
     /*
      * @Author zhoum
      * @Description 根据用户名获取用户

@@ -17,6 +17,7 @@ public class UserServiceImpl implements IUserService {
 
     @Autowired
     private UserMapper userMapper;
+
     @Override
     public User getByName(String s) {
         return userMapper.getByName(s);

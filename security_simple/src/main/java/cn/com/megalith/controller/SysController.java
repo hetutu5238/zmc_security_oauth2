@@ -17,7 +17,7 @@ import java.security.Principal;
 public class SysController {
 
     @GetMapping("/permisson")
-    public String listPermissons(Principal principal){
+    public String listPermissons(Principal principal) {
 
         System.out.println("999");
         return "666";

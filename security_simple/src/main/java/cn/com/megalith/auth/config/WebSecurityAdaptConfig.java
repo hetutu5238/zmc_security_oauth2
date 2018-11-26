@@ -41,7 +41,7 @@ public class WebSecurityAdaptConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()//定义哪些url需要被保护  哪些不需要保护
-                .antMatchers("/oauth/token", "oauth/check_token").permitAll()//定义这两个链接不需要登录可访问
+                .antMatchers("/oauth/token" , "oauth/check_token").permitAll()//定义这两个链接不需要登录可访问
                 .antMatchers("/**").permitAll() //定义所有的都不需要登录  目前是测试需要
                 .anyRequest().authenticated() //其他的都需要登录
                 //.antMatchers("/sys/**").hasRole("admin")///sys/**下的请求 需要有admin的角色
@@ -53,6 +53,7 @@ public class WebSecurityAdaptConfig extends WebSecurityConfigurerAdapter {
 
 
     }
+
     /**
      * 权限管理器  AuthorizationServerConfigurerAdapter认证中心需要的AuthenticationManager需要
      */
@@ -63,15 +64,17 @@ public class WebSecurityAdaptConfig extends WebSecurityConfigurerAdapter {
         //配置登录user验证处理器  以及密码加密器  好让认证中心进行验证
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
     }
+
     /**
      * 需要配置这个支持password模式
      * support password grant type
+     *
      * @return
      * @throws Exception
      */
     @Override
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
-        return  authenticationManager();
+        return authenticationManager();
     }
 }

@@ -31,24 +31,26 @@ public class CustomerAuthenticationProvider extends AbstractUserDetailsAuthentic
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
     /**
-     *手动实现认证
+     * 手动实现认证
      */
     @Override
-    protected void additionalAuthenticationChecks(UserDetails userDetails, UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
-        if (authentication.getCredentials() == null) {
+    protected void additionalAuthenticationChecks(UserDetails userDetails , UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
+        if ( authentication.getCredentials() == null ) {
             this.logger.debug("Authentication failed: no credentials provided");
-            throw new BadCredentialsException(this.messages.getMessage("AbstractUserDetailsAuthenticationProvider.badCredentials", "Bad credentials"));
+            throw new BadCredentialsException(this.messages.getMessage("AbstractUserDetailsAuthenticationProvider.badCredentials" , "Bad credentials"));
         } else {
             String presentedPassword = authentication.getCredentials().toString();
-            if (!this.passwordEncoder.matches(presentedPassword, userDetails.getPassword())) {
+            if ( !this.passwordEncoder.matches(presentedPassword , userDetails.getPassword()) ) {
                 this.logger.debug("Authentication failed: password does not match stored value");
-                throw new BadCredentialsException(this.messages.getMessage("AbstractUserDetailsAuthenticationProvider.badCredentials", "Bad credentials"));
+                throw new BadCredentialsException(this.messages.getMessage("AbstractUserDetailsAuthenticationProvider.badCredentials" , "Bad credentials"));
             }
         }
     }
+
     /**
-     *手动加载user
+     * 手动加载user
      */
     @Override
     protected UserDetails retrieveUser(String s , UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken) throws AuthenticationException {

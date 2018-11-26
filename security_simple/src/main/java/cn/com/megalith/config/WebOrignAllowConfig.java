@@ -15,12 +15,11 @@ import org.springframework.web.filter.CorsFilter;
 @Configuration
 public class WebOrignAllowConfig {
     /**
-     *
+     * @return org.springframework.web.filter.CorsFilter
      * @Author zhoum
      * @Description 解决跨域问题
      * @Date 17:10 2018-11-22
      * @Param []
-     * @return org.springframework.web.filter.CorsFilter
      **/
     @Bean
     public CorsFilter corsFilter() {
@@ -30,7 +29,7 @@ public class WebOrignAllowConfig {
         corsConfiguration.addAllowedOrigin("*");
         corsConfiguration.addAllowedHeader("*");
         corsConfiguration.addAllowedMethod("*");
-        urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
+        urlBasedCorsConfigurationSource.registerCorsConfiguration("/**" , corsConfiguration);
         return new CorsFilter(urlBasedCorsConfigurationSource);
     }
 }

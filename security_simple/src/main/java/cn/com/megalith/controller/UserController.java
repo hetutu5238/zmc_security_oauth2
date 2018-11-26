@@ -19,8 +19,7 @@ import java.security.Principal;
 public class UserController {
 
     @GetMapping("/current")
-    @Secured("ROLE_AA")
-    public String getCurrentUser(Principal principal){
+    public String getCurrentUser(Principal principal) {
         System.out.println(principal);
         return "111";
     }

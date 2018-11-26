@@ -22,12 +22,12 @@ public class SignUserDetaiServiceConfig implements UserDetailsService {
     private IUserService userService;
 
     /**
-     *启动刷新token授权类型，会判断用户是否还是存活的
+     * 启动刷新token授权类型，会判断用户是否还是存活的
      */
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         User currentUser = userService.getByName(s);
-        if(currentUser == null){
+        if ( currentUser == null ) {
             throw new UsernameNotFoundException("用户没用找到");
         }
 

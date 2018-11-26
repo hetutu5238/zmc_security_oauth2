@@ -33,26 +33,28 @@ import javax.sql.DataSource;
 public class CustomAuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
     /**
-     *权限管理器
+     * 权限管理器
      */
     @Autowired
     private AuthenticationManager authenticationManager;
     /**
-     *数据源，保存token的时候需要
+     * 数据源，保存token的时候需要
      */
     @Autowired
     private DataSource dataSource;
     /**
-     *设置保存token的方式，一共有五种，这里采用数据库的方式
+     * 设置保存token的方式，一共有五种，这里采用数据库的方式
      */
     @Autowired
     private TokenStore tokenStore;
+
     @Bean
-    public TokenStore tokenStore(){
+    public TokenStore tokenStore() {
         return new JdbcTokenStore(dataSource);
     }
+
     /**
-     *自定义登录或者鉴权失败时的返回信息
+     * 自定义登录或者鉴权失败时的返回信息
      */
     @Resource(name = "webResponseExceptionTranslator")
     private WebResponseExceptionTranslator webResponseExceptionTranslator;
@@ -61,12 +63,11 @@ public class CustomAuthorizationServerConfig extends AuthorizationServerConfigur
     private UserDetailsService userDetailsService;
 
 
-
     /******************配置区域**********************/
 
 
     /**
-     *用来配置授权（authorizatio）以及令牌（token）的访问端点和令牌服务   核心配置  在启动时就会进行配置
+     * 用来配置授权（authorizatio）以及令牌（token）的访问端点和令牌服务   核心配置  在启动时就会进行配置
      */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
@@ -77,8 +78,9 @@ public class CustomAuthorizationServerConfig extends AuthorizationServerConfigur
         //自定义登录或者鉴权失败时的返回信息
         endpoints.exceptionTranslator(webResponseExceptionTranslator);
     }
+
     /**
-     *用来配置令牌端点(Token Endpoint)的安全约束.
+     * 用来配置令牌端点(Token Endpoint)的安全约束.
      */
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
@@ -103,9 +105,10 @@ public class CustomAuthorizationServerConfig extends AuthorizationServerConfigur
                 .allowFormAuthenticationForClients()
                 .addTokenEndpointAuthenticationFilter(new CorsFilter(source));
     }
+
     /**
-     *用来配置客户端详情服务（ClientDetailsService），
-     *客户端详情信息在这里进行初始化，  数据库在进行client_id 与 client_secret验证时   会使用这个service进行验证
+     * 用来配置客户端详情服务（ClientDetailsService），
+     * 客户端详情信息在这里进行初始化，  数据库在进行client_id 与 client_secret验证时   会使用这个service进行验证
      */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
