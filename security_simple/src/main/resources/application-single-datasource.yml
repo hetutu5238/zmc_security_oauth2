@@ -3,10 +3,7 @@ spring:
     username: root
     #password: GYKJ2017@cn
     password: mysql
-#    url: jdbc:mysql://192.168.56.6:3306/auth_server?autoReconnect=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&allowPublicKeyRetrieval=true
     url: jdbc:mysql://localhost:3306/tjfx?autoReconnect=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&allowPublicKeyRetrieval=true
-    #url: jdbc:mysql://192.168.0.122:3306/jyplatform?createDatabaseIfNotExist=true&autoReconnect=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
-    #url: jdbc:mysql://rm-bp1x22u136ba8pc0p.mysql.rds.aliyuncs.com:3306/jy?useUnicode=true&characterEncoding=utf-8
     type: com.alibaba.druid.pool.DruidDataSource
     #连接池配置
     driverClassName: com.mysql.jdbc.Driver

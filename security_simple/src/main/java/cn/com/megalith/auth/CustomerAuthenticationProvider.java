@@ -53,7 +53,6 @@ public class CustomerAuthenticationProvider extends AbstractUserDetailsAuthentic
     @Override
     protected UserDetails retrieveUser(String s , UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken) throws AuthenticationException {
         return userDetailsService.loadUserByUsername(s);
-        //return null;
     }
 //    public static final Logger LOGGER = LoggerFactory.getLogger(CustomerAuthenticationProvider.class);
 //
@@ -92,7 +91,7 @@ public class CustomerAuthenticationProvider extends AbstractUserDetailsAuthentic
 //    }
 //
 //    /**
-//     *目前不知道具体的作用
+//     *
 //     **/
 //    @Override
 //    public boolean supports(Class<?> aClass) {

@@ -25,7 +25,5 @@ logging:
     root: info
     org:
       springframework: info
-dowload:
-  path: /home/leo/Desktop
 server:
   port: 8081

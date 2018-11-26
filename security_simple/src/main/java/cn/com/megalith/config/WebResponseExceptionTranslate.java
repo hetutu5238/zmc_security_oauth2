@@ -1,5 +1,6 @@
 package cn.com.megalith.config;
 
+import cn.com.megalith.common.ResponseData;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
@@ -17,13 +18,11 @@ import org.springframework.security.oauth2.provider.error.WebResponseExceptionTr
  */
 @Configuration
 public class WebResponseExceptionTranslate {
-
     /**
      *自定义登录或者鉴权失败时的返回信息
      */
     @Bean(name = "webResponseExceptionTranslator")
     public WebResponseExceptionTranslator webResponseExceptionTranslator() {
-
         return new DefaultWebResponseExceptionTranslator() {
             @Override
             public ResponseEntity translate(Exception e) throws Exception {
@@ -35,8 +34,7 @@ public class WebResponseExceptionTranslate {
                 if (400 == responseEntity.getStatusCode().value()) {
                     System.out.println(body.getMessage());
                     if("Bad credentials".equals(body.getMessage())){
-                        //ResponseData responseData = new ResponseData(CommonResponseCode.FAIL, "您输入的用户名或密码错误");
-                        return new ResponseEntity("您输入的用户名或密码错误", headers, HttpStatus.OK);
+                        return new ResponseEntity(new ResponseData("400","您输入的用户名或密码错误",null) , headers, HttpStatus.OK);
                     }
                 }
                 return new ResponseEntity(body, headers, responseEntity.getStatusCode());

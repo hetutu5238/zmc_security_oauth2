@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import java.security.MessageDigest;
 
 /**
- * @Description:加密组件
+ * @Description:MD5加密
  * @author: zhoum
  * @Date: 2018-11-22
  * @Time: 17:36
@@ -16,20 +16,24 @@ import java.security.MessageDigest;
 public class EncodePassword implements PasswordEncoder {
 
     /**
-     * 暂时瞎比写
+     * md5加密
      */
     @Override
     public String encode(CharSequence charSequence) {
 
         return MD5(charSequence.toString());
     }
-
+    /**
+     * 匹配规则
+     */
     @Override
     public boolean matches(CharSequence charSequence , String s) {
         return MD5(charSequence.toString()).equals(s);
     }
 
-
+    /**
+     * md5加密过程
+     */
     public static String MD5(String key) {
         char hexDigits[] = {
                 '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'

@@ -32,7 +32,6 @@ import javax.sql.DataSource;
 @EnableAuthorizationServer //授权认证中心
 public class CustomAuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
-    /*******************bean管理区域********************/
     /**
      *权限管理器
      */
@@ -77,8 +76,6 @@ public class CustomAuthorizationServerConfig extends AuthorizationServerConfigur
         endpoints.tokenStore(tokenStore);
         //自定义登录或者鉴权失败时的返回信息
         endpoints.exceptionTranslator(webResponseExceptionTranslator);
-        //启动刷新token授权类型，会判断用户是否还是存活的,以及登录信息的判断，登录信息的保存，权限的赋予
-        endpoints.userDetailsService(userDetailsService);
     }
     /**
      *用来配置令牌端点(Token Endpoint)的安全约束.
@@ -107,9 +104,8 @@ public class CustomAuthorizationServerConfig extends AuthorizationServerConfigur
                 .addTokenEndpointAuthenticationFilter(new CorsFilter(source));
     }
     /**
-     *用来配置客户端详情服务（ClientDetailsService），客
-     * 户端详情信息在这里进行初始化，  数据库在进行client_id 与 client_secret验证时   会使用这个service进行验证
-     * 你能够把客户端详情信息写死在这里或者是通过数据库来存储调取详情信息。
+     *用来配置客户端详情服务（ClientDetailsService），
+     *客户端详情信息在这里进行初始化，  数据库在进行client_id 与 client_secret验证时   会使用这个service进行验证
      */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {

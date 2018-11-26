@@ -35,23 +35,15 @@ public class UserDetail implements UserDetails {
      */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        //这儿需要将当前用户的权限以及角色加入集合并返回，
-        //注意添加权限可以只加权限点  添加角色需要在角色点前面加上role_前缀
-        //这儿因为属于实体类的缘故  所以在查询用户的角色及权限时  不能自动注入  手动获得spring容器中的bean
-        //目前先手打
+        //添加权限
         List authorisList = new ArrayList();
-        authorisList.add(new SimpleGrantedAuthority("aa"));
-        authorisList.add(new SimpleGrantedAuthority("bb"));
-        authorisList.add(new SimpleGrantedAuthority("cc"));
-        authorisList.add(new SimpleGrantedAuthority("dd"));
-        authorisList.add(new SimpleGrantedAuthority("ee"));
+
+        authorisList.add(new SimpleGrantedAuthority("GG"));
 
         authorisList.add(new SimpleGrantedAuthority("ROLE_AA"));
         authorisList.add(new SimpleGrantedAuthority("ROLE_BB"));
         authorisList.add(new SimpleGrantedAuthority("ROLE_CC"));
         authorisList.add(new SimpleGrantedAuthority("ROLE_DD"));
-
-        //authorisList.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 
         return authorisList;
     }
@@ -97,7 +89,6 @@ public class UserDetail implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
 
     public User getUser() {
         return user;
