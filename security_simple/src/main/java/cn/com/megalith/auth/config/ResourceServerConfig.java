@@ -1,11 +1,9 @@
-package cn.com.megalith.config;
+package cn.com.megalith.auth.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
-import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
-import org.springframework.stereotype.Component;
 
 /**
  * @Description: 资源提供端的配置  目前和授权认证端处于同一应用

@@ -1,4 +1,4 @@
-package cn.com.megalith.config;
+package cn.com.megalith.auth.config;
 
 import cn.com.megalith.common.ResponseData;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +17,7 @@ import org.springframework.security.oauth2.provider.error.WebResponseExceptionTr
  * @Time: 14:48
  */
 @Configuration
-public class WebResponseExceptionTranslate {
+public class WebResponseExceptionTranslateConfig {
     /**
      *自定义登录或者鉴权失败时的返回信息
      */

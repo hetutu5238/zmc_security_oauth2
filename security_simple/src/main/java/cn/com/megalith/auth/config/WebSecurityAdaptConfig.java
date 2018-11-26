@@ -1,4 +1,4 @@
-package cn.com.megalith.config;
+package cn.com.megalith.auth.config;
 
 import cn.com.megalith.auth.CustomerAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.annotation.Resource;
-import java.util.Objects;
 
 /**
  * @Description: //是默认情况下spring security的http配置 优于ResourceServerConfigurerAdapter的配置

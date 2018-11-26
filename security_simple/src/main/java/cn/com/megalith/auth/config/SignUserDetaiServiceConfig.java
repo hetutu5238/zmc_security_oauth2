@@ -1,4 +1,4 @@
-package cn.com.megalith.config;
+package cn.com.megalith.auth.config;
 
 import cn.com.megalith.auth.UserDetail;
 import cn.com.megalith.domain.entity.User;
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
  * @Time: 15:07
  */
 @Component("signUserDetailService")
-public class SignUserDetaiServiceImpl implements UserDetailsService {
+public class SignUserDetaiServiceConfig implements UserDetailsService {
 
     @Autowired
     private IUserService userService;
